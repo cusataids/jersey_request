@@ -161,11 +161,14 @@
 </main>
 
 <div class="modal-backdrop" id="claimedModal">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="claimedTitle">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="claimedTitle claimedSport">
     <div class="modal-head">
       <div>
         <h3 id="claimedTitle">Claimed numbers</h3>
-        <div class="count" id="claimedCount"></div>
+        <div class="count">
+          <span class="modal-sport" id="claimedSport"></span>
+          <span id="claimedCount"></span>
+        </div>
       </div>
       <button type="button" class="modal-close" id="claimedClose" aria-label="Close">&#10005;</button>
     </div>

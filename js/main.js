@@ -1,7 +1,7 @@
 import { initForm } from './form.js';
 import { initClaimedModal, rerenderClaimedModal } from './claimed-modal.js';
 import { initLightbox } from './lightbox.js';
-import { onClaimedChange, refreshClaimed, schedulePoll, checkAvailability } from './availability.js';
+import { onClaimedChange, refreshClaimed, checkAvailability, startPolling, pausePolling, resumePolling } from './availability.js';
 import { selectedSport } from './ui.js';
 
 initForm();
@@ -10,4 +10,9 @@ initLightbox();
 onClaimedChange(checkAvailability);
 onClaimedChange(rerenderClaimedModal);
 refreshClaimed(selectedSport());
-schedulePoll();
+startPolling();
+
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) pausePolling();
+  else resumePolling();
+});

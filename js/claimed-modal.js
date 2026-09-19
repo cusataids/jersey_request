@@ -4,6 +4,7 @@ import { el, selectedSport, selectedGender, trapFocus } from './ui.js';
 
 const modal = document.getElementById('claimedModal');
 const modalBody = document.getElementById('claimedBody');
+const sportLabel = document.getElementById('claimedSport');
 const countLabel = document.getElementById('claimedCount');
 const closeBtn = document.getElementById('claimedClose');
 const tabs = document.getElementById('claimedTabs');
@@ -64,7 +65,9 @@ function setActiveGender(gender) {
 }
 
 function render() {
-  const list = claimedList(selectedSport());
+  const sport = selectedSport();
+  const list = claimedList(sport);
+  sportLabel.textContent = sport;
   if (!list.loaded) {
     showMessage(list.failed ? "Couldn't load the list. Please try again." : 'Loading…');
     return;

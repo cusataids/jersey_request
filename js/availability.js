@@ -6,9 +6,10 @@ import { el, selectedSport, selectedGender } from './ui.js';
 const numberInput = document.getElementById('jerseyNumber');
 const availabilityMessage = document.getElementById('availMsg');
 
-const pageLoadedAt = Date.now();
 const inFlight = {};
 const changeListeners = [];
+let pollingEnabled = false;
+let pollingStartedAt = 0;
 let pollTimer = null;
 
 export function onClaimedChange(listener) {
@@ -44,18 +45,40 @@ function notifyChanged() {
   changeListeners.forEach(listener => listener());
 }
 
-export function schedulePoll() {
+export function startPolling() {
+  pollingEnabled = true;
+  pollingStartedAt = Date.now();
+  scheduleNextPoll();
+}
+
+export function stopPolling() {
+  pollingEnabled = false;
   clearTimeout(pollTimer);
+}
+
+export function pausePolling() {
+  clearTimeout(pollTimer);
+}
+
+export function resumePolling() {
+  if (!pollingEnabled) return;
+  refreshClaimed(selectedSport());
+  startPolling();
+}
+
+function scheduleNextPoll() {
+  clearTimeout(pollTimer);
+  if (!pollingEnabled || document.hidden) return;
   const wait = pollInterval();
   if (!wait) return;
   pollTimer = setTimeout(async () => {
     await refreshClaimed(selectedSport());
-    schedulePoll();
+    scheduleNextPoll();
   }, wait);
 }
 
 function pollInterval() {
-  const age = Date.now() - pageLoadedAt;
+  const age = Date.now() - pollingStartedAt;
   const step = POLL_SCHEDULE.find(s => age < s.untilMs);
   return step ? step.everyMs : 0;
 }

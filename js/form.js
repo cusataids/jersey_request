@@ -2,7 +2,7 @@ import { MTECH_RESTRICTED_YEARS } from './config.js';
 import { submitRequest } from './api.js';
 import { addClaimedRow, isClaimed } from './state.js';
 import { validateRequest } from './validation.js';
-import { refreshClaimed, loadClaimedIfNeeded, checkAvailability, setAvailabilityMessage } from './availability.js';
+import { refreshClaimed, loadClaimedIfNeeded, checkAvailability, setAvailabilityMessage, startPolling, stopPolling } from './availability.js';
 import { el, checkedValue, selectedSport } from './ui.js';
 
 const form = document.getElementById('jerseyForm');
@@ -141,6 +141,7 @@ async function handleSubmit(event) {
   }
 
   addClaimedRow(sport, { number, fullName: values.fullName, gender, course: values.course, year: values.year, sport });
+  stopPolling();
   showSuccess(payload);
 }
 
@@ -201,4 +202,5 @@ function resetForm() {
   successPanel.classList.remove('show');
   formPanel.classList.remove('hide');
   fullNameInput.focus();
+  startPolling();
 }
