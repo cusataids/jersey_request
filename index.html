@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jersey Request</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<main class="wrap">
+
+  <header class="masthead">
+    <h1>Jersey Request</h1>
+    <p>Fill in your details and choose your preferred number. Requests are handled on a first-come, first-served basis, with priority given based on year.</p>
+  </header>
+
+  <div class="layout">
+
+    <div class="design-grid">
+      <div class="design-set" data-sport="Football">
+        <button type="button" class="design-slot" data-full="images/football-jersey.jpeg">
+          <span class="slot-tag">Jersey</span>
+          <img src="images/football-jersey-preview.jpeg" alt="Football jersey design" width="800" height="731">
+        </button>
+        <button type="button" class="design-slot" data-full="images/football-shorts.jpeg">
+          <span class="slot-tag">Shorts</span>
+          <img src="images/football-shorts-preview.jpeg" alt="Football shorts design" width="800" height="731">
+        </button>
+      </div>
+      <div class="design-set" data-sport="Basketball/Volleyball" hidden>
+        <button type="button" class="design-slot" data-full="images/basketball-jersey-front.jpeg">
+          <span class="slot-tag">Front</span>
+          <img src="images/basketball-jersey-front-preview.jpeg" alt="Basketball &amp; Volleyball jersey front design" width="640" height="800">
+        </button>
+        <button type="button" class="design-slot" data-full="images/basketball-jersey-back.jpeg">
+          <span class="slot-tag">Back</span>
+          <img src="images/basketball-jersey-back-preview.jpeg" alt="Basketball &amp; Volleyball jersey back design" width="640" height="800">
+        </button>
+      </div>
+    </div>
+
+    <div>
+
+      <div class="panel form-panel" id="formPanel">
+
+        <div class="form-error" id="formError" role="alert"></div>
+
+        <form id="jerseyForm" novalidate>
+
+          <div class="field">
+            <span class="field-label" id="sportLabel">Sport</span>
+            <div class="pill-group" role="radiogroup" aria-labelledby="sportLabel">
+              <label class="pill"><input type="radio" name="sport" value="Football" checked><span>Football</span></label>
+              <label class="pill"><input type="radio" name="sport" value="Basketball/Volleyball"><span>Basketball/Volleyball</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="fullName">Full name</label>
+            <input type="text" id="fullName" name="fullName" autocomplete="name" maxlength="60" required>
+          </div>
+
+          <div class="field">
+            <span class="field-label" id="genderLabel">Gender</span>
+            <div class="pill-group" role="radiogroup" aria-labelledby="genderLabel">
+              <label class="pill"><input type="radio" name="gender" value="Male"><span>Male</span></label>
+              <label class="pill"><input type="radio" name="gender" value="Female"><span>Female</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="field-label" id="courseLabel">Course</span>
+            <div class="pill-group" role="radiogroup" aria-labelledby="courseLabel">
+              <label class="pill"><input type="radio" name="course" value="Integrated M.Sc (IMSc)"><span>Integrated M.Sc (IMSc)</span></label>
+              <label class="pill"><input type="radio" name="course" value="M.Tech"><span>M.Tech</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <span class="field-label" id="yearLabel">Course year</span>
+            <div class="pill-group" role="radiogroup" aria-labelledby="yearLabel">
+              <label class="pill"><input type="radio" name="year" value="1st Year"><span>1st Year</span></label>
+              <label class="pill"><input type="radio" name="year" value="2nd Year"><span>2nd Year</span></label>
+              <label class="pill"><input type="radio" name="year" value="3rd Year"><span>3rd Year</span></label>
+              <label class="pill"><input type="radio" name="year" value="4th Year"><span>4th Year</span></label>
+              <label class="pill"><input type="radio" name="year" value="5th Year"><span>5th Year</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="printedName">Name to be printed on jersey</label>
+            <input type="text" id="printedName" name="printedName" maxlength="16" required>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="jerseyNumber">Jersey number</label>
+            <div class="number-row">
+              <input type="number" id="jerseyNumber" name="jerseyNumber" min="0" max="999" step="1" required>
+              <button type="button" class="secondary view-claimed" id="viewClaimedBtn">Show claimed numbers</button>
+            </div>
+            <div class="avail-msg" id="availMsg" aria-live="polite"></div>
+          </div>
+
+          <div class="field" id="shortsField">
+            <span class="field-label" id="shortsLabel">Want shorts?</span>
+            <div class="pill-group" role="radiogroup" aria-labelledby="shortsLabel">
+              <label class="pill"><input type="radio" name="shorts" value="Yes"><span>Yes</span></label>
+              <label class="pill"><input type="radio" name="shorts" value="No"><span>No</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="jerseySize">Jersey size</label>
+            <select id="jerseySize" name="jerseySize" required>
+              <option value="" disabled selected>Choose a size</option>
+              <option>XS – Size 34</option>
+              <option>S – Size 36</option>
+              <option>M – Size 38</option>
+              <option>L – Size 40</option>
+              <option>XL – Size 42</option>
+              <option>XXL – Size 44</option>
+              <option>4XL – Size 48</option>
+            </select>
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" class="primary" id="submitBtn">Request For This Number</button>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="panel success-panel" id="successPanel">
+        <div class="success-badge">✓</div>
+        <h2>Request submitted</h2>
+        <p class="sub">Your request is recorded and the number is held for you in the list. It isn't final until the jersey order is confirmed.</p>
+        <ul class="summary-list" id="summaryList"></ul>
+        <button type="button" class="secondary" id="againBtn">Submit another request</button>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<div class="modal-backdrop" id="claimedModal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="claimedTitle">
+    <div class="modal-head">
+      <div>
+        <h3 id="claimedTitle">Claimed numbers</h3>
+        <div class="count" id="claimedCount"></div>
+      </div>
+      <button type="button" class="modal-close" id="claimedClose" aria-label="Close">&#10005;</button>
+    </div>
+    <div class="modal-tabs" id="claimedTabs" role="tablist">
+      <button type="button" class="tab active" data-gender="Male" role="tab" aria-selected="true">Male</button>
+      <button type="button" class="tab" data-gender="Female" role="tab" aria-selected="false">Female</button>
+    </div>
+    <div class="modal-body" id="claimedBody"></div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="designLightbox">
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Full-size design">
+    <button type="button" class="modal-close lightbox-close" id="lightboxClose" aria-label="Close">&#10005;</button>
+    <img id="lightboxImage" alt="">
+    <div class="lightbox-status" id="lightboxStatus" aria-live="polite"></div>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+
+</body>
+</html>
