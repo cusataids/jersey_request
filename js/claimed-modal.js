@@ -82,14 +82,16 @@ function render() {
   countLabel.textContent = rows.length + (rows.length === 1 ? ' number claimed' : ' numbers claimed');
 
   const headRow = el('tr');
-  headRow.append(el('th', '', 'No.'), el('th', '', 'Course'), el('th', 'right', 'Year'));
+  headRow.append(el('th', '', 'No.'), el('th', '', 'Player'), el('th', 'right', 'Year'));
   const thead = el('thead');
   thead.appendChild(headRow);
 
   const tbody = el('tbody');
   rows.forEach(row => {
+    const player = el('td', 'player');
+    player.append(el('div', '', row.fullName || '—'), el('div', 'player-course', row.course || '—'));
     const tr = el('tr');
-    tr.append(el('td', 'num', row.number), el('td', '', row.course || '—'), el('td', 'yr', row.year || '—'));
+    tr.append(el('td', 'num', row.number), player, el('td', 'yr', row.year || '—'));
     tbody.appendChild(tr);
   });
 

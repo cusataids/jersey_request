@@ -67,10 +67,17 @@ function cleanFullName() {
   if (clean !== fullNameInput.value) fullNameInput.value = clean;
 }
 
+function properCase(text) {
+  return text
+    .replace(/\s+/g, ' ')
+    .toLowerCase()
+    .replace(/(^|[^\p{L}\p{M}])(\p{L})/gu, (match, before, letter) => before + letter.toUpperCase());
+}
+
 function readFormValues() {
   return {
     sport: checkedValue('sport'),
-    fullName: fullNameInput.value.trim(),
+    fullName: properCase(fullNameInput.value.trim()),
     gender: checkedValue('gender'),
     course: checkedValue('course'),
     year: checkedValue('year'),
@@ -133,7 +140,7 @@ async function handleSubmit(event) {
     return;
   }
 
-  addClaimedRow(sport, { number, gender, course: values.course, year: values.year, sport });
+  addClaimedRow(sport, { number, fullName: values.fullName, gender, course: values.course, year: values.year, sport });
   showSuccess(payload);
 }
 

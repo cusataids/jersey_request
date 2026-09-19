@@ -478,6 +478,10 @@ button.secondary:hover{border-color:var(--gold); color:var(--gold);}
   width:54px;
 }
 
+.claimed-table td.player{line-height:1.3; overflow-wrap:anywhere;}
+
+.claimed-table .player-course{margin-top:2px; font-size:12px; color:var(--text-muted);}
+
 .claimed-table td.yr{color:var(--text-muted); white-space:nowrap;}
 
 .modal-msg{padding:30px 0; text-align:center; color:var(--text-muted); font-size:14px;}
