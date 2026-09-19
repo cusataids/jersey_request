@@ -41,6 +41,13 @@
           <img src="images/basketball-jersey-back-preview.jpeg" alt="Basketball &amp; Volleyball jersey back design" width="640" height="800">
         </button>
       </div>
+      <div class="notice design-note">
+        <span class="notice-icon" aria-hidden="true">i</span>
+        <div>
+          <span class="notice-title">Please note</span>
+          <p>The jersey design is still being finalized, so there may be some changes to the final version.</p>
+        </div>
+      </div>
     </div>
 
     <div>
@@ -98,8 +105,15 @@
 
           <div class="field">
             <label class="field-label" for="jerseyNumber">Jersey number</label>
+            <div class="notice" id="jerseyNumberNote">
+              <span class="notice-icon" aria-hidden="true">!</span>
+              <div>
+                <span class="notice-title">Important</span>
+                <p>Jersey numbers 1–15 are reserved for main players. Priority will always be given to main players, even if a number has already been assigned to you.</p>
+              </div>
+            </div>
             <div class="number-row">
-              <input type="number" id="jerseyNumber" name="jerseyNumber" min="0" max="999" step="1" required>
+              <input type="number" id="jerseyNumber" name="jerseyNumber" min="0" max="999" step="1" required aria-describedby="jerseyNumberNote">
               <button type="button" class="secondary view-claimed" id="viewClaimedBtn">Show claimed numbers</button>
             </div>
             <div class="avail-msg" id="availMsg" aria-live="polite"></div>

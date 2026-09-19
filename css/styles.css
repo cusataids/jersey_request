@@ -116,6 +116,49 @@ body{
   border-radius:20px;
 }
 
+.notice{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  padding:12px 14px 12px 12px;
+  border-radius:8px;
+  background:var(--gold-soft);
+  border:1px solid rgba(232,163,61,0.3);
+  border-left:3px solid var(--gold);
+}
+
+.notice-icon{
+  flex-shrink:0;
+  width:22px;
+  height:22px;
+  margin-top:1px;
+  border-radius:50%;
+  background:var(--gold);
+  color:#1A1200;
+  font-weight:700;
+  font-size:13px;
+  line-height:22px;
+  text-align:center;
+}
+
+.notice-title{
+  display:block;
+  margin-bottom:5px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:13px;
+  letter-spacing:1.2px;
+  line-height:1;
+  color:var(--gold);
+}
+
+.notice p{
+  margin:0;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.design-note{margin-top:14px;}
+
 @media (max-width:760px){
   .layout{grid-template-columns:1fr;}
   .design-grid{max-width:440px;}
@@ -208,6 +251,8 @@ select option{background:var(--surface-2); color:var(--text);}
 .pill input:disabled{cursor:not-allowed;}
 .pill input:disabled + span{opacity:0.35; cursor:not-allowed; text-decoration:line-through;}
 .pill:has(input:disabled):hover span{border-color:var(--border);}
+
+.field .notice{margin-bottom:10px;}
 
 .number-row{display:flex; gap:10px; align-items:flex-start;}
 .number-row input{max-width:140px;}
